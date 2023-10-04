@@ -12,7 +12,7 @@ const app = express();
 
 app.use((err, req, res, next) => {
     console.error(err);
-    sendResponse(res, 500, 'internal server error', null, err);
+    sendResponse(res, 500, 'Internal server error', null, err);
   });
 
 sequelize.sync()
