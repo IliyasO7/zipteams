@@ -7,9 +7,13 @@ export const createUser = joi.object({
   password: joi.string().required()
 });
 
+export const login = joi.object({
+  email: joi.string().email().required(),
+  password: joi.string().required()
+});
+
 
 export const updateUser = joi.object({
     username: joi.string(),
     email: joi.string().email(),
-    password: joi.string()
   });
