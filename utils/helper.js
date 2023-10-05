@@ -1,3 +1,6 @@
+import dotenv from 'dotenv'
+dotenv.config();
+
 export const sendResponse = (
   res,
   statusCode,
@@ -48,3 +51,14 @@ export const validate = (schema, options = {}) => {
     next();
   };
 };
+
+export const verifyApiKey = (req, res, next) => {
+  const providedApiKey = req.headers['x-api-key'];
+  console.log(providedApiKey)
+  console.log(process.env.XAPI_KEY)
+ 
+  if (!providedApiKey || providedApiKey !== process.env.XAPI_KEY) {
+    return res.status(401).json({ message: 'Unauthorized: Invalid API key' });
+  }
+  next();
+}
