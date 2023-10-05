@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors'
 import sequelize from './utils/database.js';
 import  { sendResponse } from './utils/helper.js'
 import routes from './routes/index.js';
@@ -9,6 +10,10 @@ import Todo from './models/todo.js';
 dotenv.config();
 
 const app = express();
+app.use(cors());
+app.options('/*', (_, res) => {
+  res.sendStatus(200);
+});
 
 app.use(express.json())
 
